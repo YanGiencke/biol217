@@ -8,6 +8,7 @@ To move to different directories use `cd "path/"`, for example:
 ```
 cd Desktop
 ```
+to move to the Desktop.
 
 
 
