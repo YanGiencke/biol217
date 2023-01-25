@@ -15,6 +15,14 @@ to move to the Desktop.
 
 ## Using GitHub
 
+
+## Inserting code
+To insert code, use the following syntax:
+```
+`code`
+```
+
+
 use this code to make a folder
 
 ` mkdir foldername `
@@ -39,4 +47,16 @@ separate lines by/
 adding `/` to the end
 
 
-second change
+## Shortening/hiding links
+To include a link in a document, use the following syntax:
+`[link text](https://www.example.com)`
+
+For example, to link to the [Google homepage](https://www.google.com), you would use the following syntax:
+`[Google](https://www.google.com)`
+
+## Insert images
+- create a resources folder in git_repo
+- upload image to resources folder
+- in .md or GitHub file use `![](resources/image.png)` to insert image
+- example: ![test](./resources/test.png)
+
