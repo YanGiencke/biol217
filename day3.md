@@ -36,4 +36,25 @@
 # Programming stuff
 
 ## looking at sequences:
+- ´cat file.txt' to look at whole file
+- ´head file.txt' to look at first 10 lines
+- ´tail file.txt' to look at last 10 lines
+- ´less file.txt' to look at file in less
+- ´grep "string" file.txt' to look for string in file
+- ´grep -v "string" file.txt' to look for string not in file
+- ´grep -c "string" file.txt' to count number of times string appears in file
 
+# Questions
+
+- Please submit your generated figure and explain in your own words what you can see:
+The graph below shows the Bandage results ![Bandage results](resources/bandage_graph.png)
+The graph shows the different contigs from the assembly, sorted by length. You can also identifiy loops in the graph.
+
+- What is your N50 value? Why is this value relevant?
+The N50 value is 2961. This value shows the length of the contigs that are needed to cover half of the total length of the contigs.
+
+- How many contigs are assembled?
+56057
+
+- What is the total length of the contigs?
+142162752
