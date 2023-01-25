@@ -56,3 +56,5 @@ Batch scripts are Bash scripts that are run on the cluster. The scripts are used
 ## 5. Quality assessment
 - The quality of the bins is assessed.
 - The bins are sorted by quality.
+
+Short introduction to sequencing:
