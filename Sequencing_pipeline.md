@@ -148,7 +148,7 @@ fastqc PATH/TO/input_file -o PATH/TO/output_directory -t 4 -f fastq -k 7 -q -c 4
 ```
 </details>
 
-[Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/fastqcscript.sh)
+[Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/assemblyscript.sh)
 
 
 - **Fastp** is a program that trims and filters the DNA fragments. It can be used to trim the DNA fragments to a specific length, to remove low quality nucleotides from the beginning and end of the DNA fragments, and to remove DNA fragments with too many low quality nucleotides. The parameters for trimming and filtering are specified in the batch script. The output of fastp is a fastq file with the trimmed and filtered DNA fragments.
@@ -157,7 +157,7 @@ fastqc PATH/TO/input_file -o PATH/TO/output_directory -t 4 -f fastq -k 7 -q -c 4
   - Input file: `fastq` (+ information from report.`HTML`)
   - Output file: `fastq`
 
-[Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/fastpscript.sh)
+[Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/fastpscript.sh)
 
 
 ## 3. Assembly
@@ -171,7 +171,7 @@ To assemble the DNA fragments into contigs, the program **[megahit](https://gith
 - Input: `R1_fastq` + `R2_fastq` (trimmed and filtered by fastp)
 - Output: `fa` (fasta)
 
-[Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/assemblyscript.sh)
+[Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/assemblyscript.sh)
 
 
 To visualize the contigs, you can use the program **[Bandage](https://rrwick.github.io/Bandage/)**. For this you need to convert the fasta file to a fastg file.
@@ -184,7 +184,7 @@ To visualize the contigs, you can use the program **[Bandage](https://rrwick.git
   ``` 
   megahit_toolkit contig2fastg 99 -i input_file.fa -o output_file.fastg
   ```
-  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/fastgscript.sh)
+  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/contig2fastg.sh)
 
   The following image shows the visualisation of the contigs using Bandage. The contigs are sorted by length.
   ![Bandage results](resources/bandage_graph.png)
@@ -193,20 +193,33 @@ A quick way to count the number of contigs in a fasta file is to use the followi
   ```
   grep -c ">" final.contigs.fa
   ```
-Qualty assessment of the contigs is done using **[quast](https://quast.sourceforge.net/quast.html)** 
+Qualty assessment of the contigs is done using **[quast](https://quast.sourceforge.net/quast.html)**. It creates a report that contains information about the contigs. The report is used to decide which parameters to use for binning or reassembly.
 
   - Command: **[quast](https://quast.sourceforge.net/quast.html)**
   - input: `fa` (fasta)
   - output: `HTML` (report)
 
-## 4. Binning
-- Mapping of the contigs as preparation for binning.
-- The contigs are clustered into bins.
-- Two methods:
-  -   Refference based
-  -   De-Novo by differential coverage
+[Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/metaquastscript.sh)
 
-Mapping of the contigs is done using **[bowtie2]( http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)**
+## 4. Binning
+The binning is done in the following steps:
+  - Mapping of the contigs as preparation for binning.
+  - Binning
+    - Refference based
+    - De-Novo by differential coverage
+  - Bin refinement
+  - Bin reassembly
+
+Binning is done in the anvi'o environment, which requires a specific file format. To convert the fasta file to the anvi'o file type, the following command is used:
+
+  - Command: **[anvi-script-reformat-fasta](https://merenlab.org/2016/06/26/anvio-tutorial-v2/#reformat-fasta)**
+  - Input: `fa` (fasta)
+  - Output: `fa` (anvi'o)
+
+[Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/anvio_reformat.sh)
+
+
+Mapping of the contigs is done using **[bowtie2]( http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)**. Here the raw reads are mapped onto our assembled contigs.
 
   - Command: **[bowtie2]( http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)**
   - Input: `fa` (fasta)
