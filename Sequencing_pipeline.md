@@ -26,6 +26,7 @@ An example of a batch script is shown below.
 #SBATCH -n 1
 #SBATCH -t 0-00:30
 #SBATCH --mem=100
+#SBATCH --nodelist=node002
 
 ´whatever commands you want to run´
 ```
@@ -36,6 +37,7 @@ These lines specify:
 - the number of cores
 - the time limit 
 - the memory limit
+- the node to run the job on
 
 The partition is the queue on the cluster. The time limit is the maximum time the job can run. The memory limit is the maximum amount of memory the job can use.
 
@@ -160,14 +162,17 @@ fastqc PATH/TO/input_file -o PATH/TO/output_directory -t 4 -f fastq -k 7 -q -c 4
 
 ## 3. Assembly
 - The DNA fragments are assembled into contigs.
-- The contigs are sorted by length.
-- The contigs are clustered into bins.
+- Quality assessment of the contigs.
+  - Visualization of the contigs.
+  - Analysis of metadata.
 
+To assemble the DNA fragments into contigs, the program **[megahit](https://github.com/voutcn/megahit)** is used.
 - Command: **[megahit](https://github.com/voutcn/megahit)**
 - Input: `R1_fastq` + `R2_fastq` (trimmed and filtered by fastp)
 - Output: `fa` (fasta)
 
 [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/assemblyscript.sh)
+
 
 To visualize the contigs, you can use the program **[Bandage](https://rrwick.github.io/Bandage/)**. For this you need to convert the fasta file to a fastg file.
 
@@ -175,30 +180,64 @@ To visualize the contigs, you can use the program **[Bandage](https://rrwick.git
 - Input: `fa` (fasta)
 - Output: `fastg`
 
-example:
-``` 
-megahit_toolkit contig2fastg 99 -i input_file.fa -o output_file.fastg
-```
-[Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/fastgscript.sh)
+  example:
+  ``` 
+  megahit_toolkit contig2fastg 99 -i input_file.fa -o output_file.fastg
+  ```
+  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/fastgscript.sh)
 
-The following image shows the visualisation of the contigs using Bandage. The contigs are sorted by length.
-![Bandage results](resources/bandage_graph.png)
+  The following image shows the visualisation of the contigs using Bandage. The contigs are sorted by length.
+  ![Bandage results](resources/bandage_graph.png)
 
 A quick way to count the number of contigs in a fasta file is to use the following code:
-```
-grep -c ">" final.contigs.fa
-```
+  ```
+  grep -c ">" final.contigs.fa
+  ```
+Qualty assessment of the contigs is done using **[quast](https://quast.sourceforge.net/quast.html)** 
 
+  - Command: **[quast](https://quast.sourceforge.net/quast.html)**
+  - input: `fa` (fasta)
+  - output: `HTML` (report)
 
 ## 4. Binning
+- Mapping of the contigs as preparation for binning.
 - The contigs are clustered into bins.
 - Two methods:
   -   Refference based
-  -   De-Novo
+  -   De-Novo by differential coverage
+
+Mapping of the contigs is done using **[bowtie2]( http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)**
+
+  - Command: **[bowtie2]( http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)**
+  - Input: `fa` (fasta)
+  - Output: `sam` (sam)
+
+The method used in this course is the de-novo method.
+
+
+
+Bin refinement is done using **[checkm](
+
+Bin reassembly is done using **[concoct]( https://concoct.readthedocs.io/en/latest/)
+
+
 
 ## 5. Quality assessment
 - The quality of the bins is assessed.
 - The bins are sorted by quality.
+types of contamination:
+  - redundant sequences (parts are covered multiple times)
+  - chimeric sequences (contamination by other organisms)
+  - both redundant and chimeric sequences
+
+
+Redundant sequences are detected using **[dRep](
+
+Chimeric sequences are detected using **[chimera-slayer](
+
+Reference representation score (RRS) is calculated using **[checkm](
+
+Clade seperation score (CSS) is calculated using **[checkm](
 
 ## 6. Taxonomic classification
 - The bins are classified into taxonomic groups.

@@ -12,10 +12,9 @@
 #grab input folder and move it to working directory
 #cp -r origin_folder/ own_working_folder/
 #be sure to move into to working directory (were input folder is located)
-cd /work_beegfs/sunam230/day2/
+#cd /work_beegfs/sunam230/day2/
 #load your anvio environment (path needs to be adjusted)
 #conda activate anvio
-conda activate /home/sunam226/.conda/envs/anvio
 #source activate /home/sunamXXX/miniconda3/miniconda4.9.2/usr/etc/profile.d/conda.sh/envs/anvio-7.1
 #to execute in for loop:
 #change directory
@@ -29,8 +28,3 @@ do
     fastp -i ${i} -I ${second} -R ../fastp_out/"${i}"_report -o ../fastp_out/"${i}" -O ../fastp_out/"${second}" -t 6 -q 20
 
 done
-#The loop takes the name of the first file "*_R1.fastq.gz" = i and replaces the "R1" wit "R2" = second.
-#i is given fastp as first input (-i, -in1)
-#second is given to fastp as seccond input (-I, -in2)
-#both get their respective output (-o, -out1 / -O, -out2)
-#process is repeated with next "*_R1.fastq.gz" file
