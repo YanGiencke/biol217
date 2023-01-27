@@ -110,45 +110,45 @@ The following programs are used:
   - Input file: `fastq` 
   - Output: report.`HTML`
 
-<details>
-<summary>Expand to see the documentation of fastqc</summary>
+  <details>
+  <summary>Expand to see the documentation of fastqc</summary>
 
-fastqc accepts the following parameters:
-  - `-o` - output directory
-  - `-t` - number of threads
-  - `-f` - file format
-  - `-k` - kmer size
-  - `-q` - quiet mode
-  - `-c` - number of files to process in parallel
-  - `-noextract` - do not extract the compressed file
-  - `-nogroup` - do not create a summary report
-  - `-nozip` - do not zip the output file
-  - `-threads` - number of threads to use
-  - `-format` - file format
-  - `-kmers` - kmer size
-  - `-quiet` - quiet mode
-  - `-contaminants` - contaminants file
-  - `-adapters` - adapters file
-  - `-extract` - extract the compressed file
-  - `-n` - number of files to process in parallel
-  - `-s` - summary report
-  - `-z` - zip the output file
-  - `-h` - help
-  - `-v` - version
+  fastqc accepts the following parameters:
+    - `-o` - output directory
+    - `-t` - number of threads
+    - `-f` - file format
+    - `-k` - kmer size
+    - `-q` - quiet mode
+    - `-c` - number of files to process in parallel
+    - `-noextract` - do not extract the compressed file
+    - `-nogroup` - do not create a summary report
+    - `-nozip` - do not zip the output file
+    - `-threads` - number of threads to use
+    - `-format` - file format
+    - `-kmers` - kmer size
+    - `-quiet` - quiet mode
+    - `-contaminants` - contaminants file
+    - `-adapters` - adapters file
+    - `-extract` - extract the compressed file
+    - `-n` - number of files to process in parallel
+    - `-s` - summary report
+    - `-z` - zip the output file
+    - `-h` - help
+    - `-v` - version
 
-[Full documentation](https://home.cc.umanitoba.ca/~psgendb/doc/fastqc.help)
+  [Full documentation](https://home.cc.umanitoba.ca/~psgendb/doc/fastqc.help)
 
-example: 
-```
-#essential (input file is in the current directory):
-fastqc input_file
+  example: 
+  ```
+  #essential (input file is in the current directory):
+  fastqc input_file
 
-#optional:
-fastqc PATH/TO/input_file -o PATH/TO/output_directory -t 4 -f fastq -k 7 -q -c 4 -threads 4 -kmers 7 -n 4  
-```
-</details>
+  #optional:
+  fastqc PATH/TO/input_file -o PATH/TO/output_directory -t 4 -f fastq -k 7 -q -c 4 -threads 4 -kmers 7 -n 4  
+  ```
+  </details>
 
-[Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/assemblyscript.sh)
+  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/assemblyscript.sh)
 
 
 - **Fastp** is a program that trims and filters the DNA fragments. It can be used to trim the DNA fragments to a specific length, to remove low quality nucleotides from the beginning and end of the DNA fragments, and to remove DNA fragments with too many low quality nucleotides. The parameters for trimming and filtering are specified in the batch script. The output of fastp is a fastq file with the trimmed and filtered DNA fragments.
@@ -157,7 +157,7 @@ fastqc PATH/TO/input_file -o PATH/TO/output_directory -t 4 -f fastq -k 7 -q -c 4
   - Input file: `fastq` (+ information from report.`HTML`)
   - Output file: `fastq`
 
-[Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/fastpscript.sh)
+  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/fastpscript.sh)
 
 
 ## 3. Assembly
@@ -171,7 +171,7 @@ To assemble the DNA fragments into contigs, the program **[megahit](https://gith
 - Input: `R1_fastq` + `R2_fastq` (trimmed and filtered by fastp)
 - Output: `fa` (fasta)
 
-[Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/assemblyscript.sh)
+  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/assemblyscript.sh)
 
 
 To visualize the contigs, you can use the program **[Bandage](https://rrwick.github.io/Bandage/)**. For this you need to convert the fasta file to a fastg file.
@@ -184,7 +184,7 @@ To visualize the contigs, you can use the program **[Bandage](https://rrwick.git
   ``` 
   megahit_toolkit contig2fastg 99 -i input_file.fa -o output_file.fastg
   ```
-  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/contig2fastg.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/contig2fastg.sh)
 
   The following image shows the visualisation of the contigs using Bandage. The contigs are sorted by length.
   ![Bandage results](resources/bandage_graph.png)
@@ -199,7 +199,7 @@ Qualty assessment of the contigs is done using **[quast](https://quast.sourcefor
   - input: `fa` (fasta)
   - output: `HTML` (report)
 
-[Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/metaquastscript.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/metaquastscript.sh)
 
 ## 4. Binning
 The binning is done in the following steps:
@@ -210,22 +210,71 @@ The binning is done in the following steps:
   - Bin refinement
   - Bin reassembly
 
-Binning is done in the anvi'o environment, which requires a specific file format. To convert the fasta file to the anvi'o file type, the following command is used:
+Binning is done in the [anvi'o](https://anvio.org/) environment, which requires a specific file format. To convert the fasta file to the anvi'o file type, the following command is used:
 
   - Command: **[anvi-script-reformat-fasta](https://merenlab.org/2016/06/26/anvio-tutorial-v2/#reformat-fasta)**
   - Input: `fa` (fasta)
-  - Output: `fa` (anvi'o)
+  - Output: `fa` (fasta anvi'o)
 
-[Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/anvio_reformat.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/anvio_reformat.sh)
 
 
 Mapping of the contigs is done using **[bowtie2]( http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)**. Here the raw reads are mapped onto our assembled contigs.
+  First the index of the contigs is created:
 
+  - Command: **[bowtie2-build]( http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)**
+  - Input: `fa` (fasta anvi'o)
+  - Output: `bt2` (bowtie2 index)
+
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/bowtie2_build.sh)
+
+
+  Then the raw reads are mapped onto the contigs:
   - Command: **[bowtie2]( http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)**
-  - Input: `fa` (fasta)
-  - Output: `sam` (sam)
+  - Input: `bt2` (bowtie2 index) + `fq` (fastq trimmed)
+  - Output: `sam` (sequence alignment map)
 
-The method used in this course is the de-novo method.
+      [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/mappingscript.sh)
+
+  The mapping results are converted to a binary alignment map (bam) file:
+  - Command: **[samtools view]( http://www.htslib.org/)**
+  - Input: `sam` (sequence alignment map)
+  - Output: `bam` (binary alignment map)
+
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/sam2bam.sh)
+
+  The bam file is sorted and indexed:
+  - Command: **[anvi-init-bam]( https://anvio.org/help/main/programs/anvi-init-bam/)**
+  - Input: `bam` (binary alignment map)
+  - Output: `bam` (sorted) + `bam.bai` (index)
+
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/sort_index_bam.sh)
+
+Next we create a contigs database which holds important information about the contigs. The program **[anvi-gen-contigs-database](https://merenlab.org/2016/06/22/anvio-tutorial-v2/#creating-an-anvio-contigs-database)** computes the k-mer frequencies and identifies open reading frames (ORFs) using [Prodigal](https://github.com/hyattpd/Prodigal). On the created contigs database, we perform a search for hidden Markov models (HMMs) using [anvi-run-hmms](https://anvio.org/help/7/programs/anvi-run-hmms/).
+
+ This is done using the following command:
+  - Command: **[anvi-gen-contigs-database](https://merenlab.org/2016/06/22/anvio-tutorial-v2/#creating-an-anvio-contigs-database)** + **[anvi-run-hmms](https://anvio.org/help/7/programs/anvi-run-hmms/)**
+  - Input: `fa` (fasta anvi'o)
+  - Output: `db` (contigs database) 
+
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/contigdbscript.sh)
+
+Creating an anvi'o profile:
+  - Command: **[anvi-profile](https://merenlab.org/2016/06/22/anvio-tutorial-v2/#creating-an-anvio-profile)**
+  - Input: `bam` (sorted) + `db` (contigs database)
+  - Output: `db` (anvi'o profile)
+
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/anvio_profile.sh)
+
+Merging the anvi'o profiles:
+  - Command: **[anvi-merge](https://merenlab.org/2016/06/22/anvio-tutorial-v2/#merging-anvio-profiles)**
+  - Input: `db` (anvi'o profiles)
+  - Output: `db` (merged profile)
+
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/anvi_merge.sh)
+
+
+Comand to adress files in multiple subdirectories: `find . -name "*.db" -print0 | xargs -0 -I {} anvi-merge {} -o merged.db`
 
 
 

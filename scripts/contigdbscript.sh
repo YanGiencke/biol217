@@ -21,4 +21,4 @@ mkdir -p contigsDB
 #Contig data preperation
 anvi-gen-contigs-database -f ./3_coassembly/contigs.anvio.fa -o ./contigsDB/contigs.db -n 'biol217'
 #HMM search
-#anvi-run-hmms -c ./contigsDB/contigs.db
+anvi-run-hmms -c ./contigsDB/contigs.db

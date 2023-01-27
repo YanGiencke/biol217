@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --nodes=1
-#SBATCH --job-name=anvi_reformat
+#SBATCH --job-name=anvio_reformat
 #SBATCH --cpus-per-task=4
 #SBATCH --mem=10G
 #SBATCH --time=1:00:00
-#SBATCH --output=anvi_reformat.out
-#SBATCH --error=anvi_reformat.err
+#SBATCH --output=anvio_reformat.out
+#SBATCH --error=anvio_reformat.err
 #SBATCH --partition=all
 #SBATCH --reservation=biol217
 

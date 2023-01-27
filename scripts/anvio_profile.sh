@@ -19,5 +19,15 @@ conda activate /home/sunam225/miniconda3/miniconda4.9.2/usr/etc/profile.d/conda.
 cd /work_beegfs/sunam230/day3/mapping_out/
 mkdir -p ../anvio_profile
 #Creating an Anvi’o Profile
-for i in `ls *.sorted.bam | cut -d "." -f 1`;
-	do anvi-profile -i "$i".bam.sorted.bam.sorted.bam -c ../contigsDB/contigs.db -o ../anvio_profile/”$i”; done
+#for i in `ls *.sorted.bam | cut -d "." -f 1`;
+#	do anvi-profile -i "$i".bam.sorted.bam.sorted.bam -c ../contigsDB/contigs.db -o ../anvio_profile/”$i”; done
+#alternative without renaming
+# for i in *.sorted.bam;
+# 	do anvi-profile -i "$i" -c ../contigsDB/contigs.db -o ../anvio_profile/”$i”;
+# done
+#better renaming
+for i in `ls *.sorted.bam`; 
+do
+	name = `echo ${i} | cut -d "." -f 1`;
+	 anvi-profile -i ${i} -c ../contigsDB/contigs.db -o ../anvio_profile/”${name}”; 
+done

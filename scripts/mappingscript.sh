@@ -16,8 +16,11 @@ conda activate /home/sunam226/.conda/envs/anvio
 #source activate /home/sunam226/miniconda3/miniconda4.9.2/usr/etc/profile.d/conda.sh/envs/anvio-7.1
 #load bowtie2
 module load bowtie2
-#create output folder:
-cd /work_beegfs/sunam230/day3
-mkdir -p mapping_out
+#move to input folder
+cd /work_beegfs/sunam230/day2/fastp_out/
 #Genomes Mapping
-bowtie2-build ./mapping_out/contigs.anvio.fa ./mapping_out/contigs.anvio.fa.index
+for i in `ls *_R1.fastq.gz`;
+do
+    second=`echo ${i} | sed 's/_R1/_R2/g'`
+    bowtie2 --very-fast -x /work_beegfs/sunam230/day3/mapping_out/contigs.anvio.fa.index -1 ${i} -2 ${second} -S ../../day3/mapping_out/${i}.sam 
+done

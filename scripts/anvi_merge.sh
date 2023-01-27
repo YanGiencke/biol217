@@ -22,3 +22,12 @@ cd /work_beegfs/sunam230/day3/anvio_profile
 #Merging Anvi’o Profiles
 anvi-merge ./BGR_130305/PROFILE.db ./BGR_130527/PROFILE.db ./BGR_130708/PROFILE.db -o ./merged_profiles -c ../contigsDB/contigs.db --enforce-hierarchical-clustering
 #anvi-merge /PATH/TO/SAMPLE1/PROFILE.db /PATH/TO/SAMPLE2/PROFILE.db /PATH/TO/SAMPLE3/PROFILE.db -o /PATH/TO/merged_profiles -c /PATH/TO/contigs.db --enforce-hierarchical-clustering
+#with automated path
+# path=""
+# for i in *;
+#     do path += "$i/PROFILE.db ";
+# done
+# echo "$path"
+#anvi-merge "${path}"" -o /merged_profiles -c ../contigsDB/contigs.db --enforce-hierarchical-clustering
+#another trial
+#anvi-merge */PROFILE.db -o /merged_profiles -c ../contigsDB/contigs.db --enforce-hierarchical-clustering
