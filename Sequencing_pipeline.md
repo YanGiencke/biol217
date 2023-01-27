@@ -274,6 +274,15 @@ Merging the anvi'o profiles:
     [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/anvi_merge.sh)
 
 
+Now the actual binning is done using [Metabat2](https://bitbucket.org/berkeleylab/metabat/src/master/ ) and [CONCOCT](https://github.com/BinPro/CONCOCT ), afterwards we choose the best bins by running the [DAS_Tool](https://github.com/cmks/DAS_Tool ).
+
+Metabat2:
+  - Command: **[anvi-gen-bins](https://merenlab.org/2016/06/22/anvio-tutorial-v2/#binning-with-anvio)**
+  - Input: `db` (merged profile)
+  - Output: `fa` (fasta) + `db` (bins database)
+
+    [Batch script used in course](
+
 Comand to adress files in multiple subdirectories: `find . -name "*.db" -print0 | xargs -0 -I {} anvi-merge {} -o merged.db`
 
 
