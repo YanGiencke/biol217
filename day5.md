@@ -1,5 +1,5 @@
 # Questions
-Do you get bins that are chimeric?
+Do you get Archaea bins that are chimeric?
 hint: look at the CSS score (explained in the lecture) and the column PASS GUNC in the tables outputs per bin in your gunc_output folder.
 
 
@@ -7,25 +7,24 @@ In your own words (2 sentences max), explain what is a chimeric bin.
 A chimeric bin is a bin that includes sequences from multiple organisms of different species. 
 
 
+Does the quality of your Archaea improve?
+hint: look at completeness redundancy in the interface of anvio and submit info of before and after
+Submit your output Figure
 
-# Code
-```
 
-conda activate /home/sunam225/miniconda3/miniconda4.9.2/usr/etc/profile.d/conda.sh/envs/anvio-7.1
+how abundant are the archaea bins in the 3 samples? (relative abundance)
+**you can also use anvi-inspect -p -c, anvi-script-get-coverage-from-bam or, anvi-profile-blitz. Please look up the help page for each of those commands and construct the appropriate command line
 
-cd /work_beegfs/sunam230/Day5/5_anvio_profiles/SUMMARY_FINAL/bin_by_bin/
 
-mkdir ../../ARCHAEA_BIN_REFINEMENT
 
-cp Bin_METABAT__25/*.fa ../../ARCHAEA_BIN_REFINEMENT
-cp Bin_Bin_1_sub/*.fa ../../ARCHAEA_BIN_REFINEMENT
+Did you get a species assignment to the  bins previously identified?
 
-conda activate /home/sunam226/.conda/envs/gunc
+Does the HIGH-QUALITY assignment of the bin need revision?
 
-cd ../../ARCHAEA_BIN_REFINEMENT
+hint: MIMAG quality tiers https://www.nature.com/articles/nbt.3893
 
-mkdir GUNC
 
-for i in *.fa; 
-    do gunc run -i "$i" -r /home/sunam226/Databases/gunc_db_progenomes2.1.dmnd --out_dir GUNC --threads 10 --detailed_output; 
-done
+How many species do you have in the dataset?
+
+Try to dereplicate again at 90% identity then at 80%identity. In you own words, explain the differences between the different %identities.
+
