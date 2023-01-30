@@ -23,6 +23,6 @@ anvi-run-scg-taxonomy -c /work_beegfs/sunam230/Day5/contigs.db -T 20 -P 2
 #estimate annotation Genes
 anvi-estimate-scg-taxonomy -c /work_beegfs/sunam230/Day5/contigs.db --metagenome-mode
 #estimate Ribosomal RNAs
-anvi-estimate-scg-taxonomy -c /work_beegfs/sunam230/Day5/contigs.db --metagenome-mode --compute-scg-coverages --update-profile-db-with-taxonomy > RNA_estimation.txt
+anvi-estimate-scg-taxonomy -c /work_beegfs/sunam230/Day5/contigs.db --metagenome-mode --compute-scg-coverages --update-profile-db-with-taxonomy
 #summarize the data
-anvi-summarize -p merged_profiles/PROFILE.db -c /work_beegfs/sunam230/Day5/contigs.db -o SUMMARY_consolidated_bins/bla -C consolidated_bins
+anvi-summarize -p merged_profiles/PROFILE.db -c /work_beegfs/sunam230/Day5/contigs.db -o SUMMARY_consolidated_bins/ -C consolidated_bins
