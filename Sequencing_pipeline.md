@@ -212,7 +212,7 @@ The binning is done in the following steps:
 
 Binning is done in the [anvi'o](https://anvio.org/) environment, which requires a specific file format. To convert the fasta file to the anvi'o file type, the following command is used:
 
-  - Command: **[anvi-script-reformat-fasta](https://merenlab.org/2016/06/26/anvio-tutorial-v2/#reformat-fasta)**
+  - Command: **[anvi-script-reformat-fasta](https://anvio.org/help/main/programs/anvi-script-reformat-fasta/)**
   - Input: `fa` (fasta)
   - Output: `fa` (fasta anvi'o)
 
