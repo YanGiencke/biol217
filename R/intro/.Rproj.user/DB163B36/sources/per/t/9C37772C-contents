@@ -1,0 +1,62 @@
+# Title: Introduction to R
+
+# To print a value, use the print() function.
+print("Hello, world!")
+
+# To print a value without the print() function, use the value itself.
+
+# to show the current working directory, use the getwd() function.
+getwd()
+
+# To create a new directory, use the dir.create() function.
+# dir.create("data")
+# dir.create("data/raw_data")
+
+# R has 5 basic data types: logical, integer, numeric, complex, and character.
+# To assign a value to a variable, use the assignment operator, <-.
+x <- 1:10
+t <- TRUE
+
+# To create a sequence of numbers, use the colon operator, :.
+z <- 1:10
+
+# To create a sequence of numbers with a step size, use the seq() function.
+w <- seq(1, 10, by = 2)
+
+# Data types
+# To check the data type of a variable, use the class() function.
+class(x) # numeric
+class(t) # logical
+class(y) 
+
+# To check the length of a variable, use the length() function.
+length(x)
+
+# R has 3 basic data structures: vectors, matrices, and data frames.
+# To create a vector, use the c() function.
+y <- c(1, 2, 3, 4, 5)
+
+# To create a matrix, use the matrix() function.
+m <- matrix(1:9, nrow = 3, ncol = 3)
+
+# To create a data frame, use the data.frame() function.
+df <- data.frame(x = 1:10, y = 1:10)
+
+# R operators
+# Mathematical operators: +, -, *, /, ^, %%
+# Logical operators: >, <, >=, <=, ==, !=
+# Logical operators: &, |, !
+
+
+
+
+# Test your knowledge
+# using iris dataset
+data("iris")
+View(iris)
+
+plot(iris)
+
+boxplot(iris$Sepal.Length ~ iris$Species)
+
+setwd("/home/kurs/Desktop/biol217/R/intro")
