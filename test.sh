@@ -14,3 +14,9 @@ for i in *;
 done
 echo "$path"
 #anvi-merge "${path}"" -o /merged_profiles -c ../contigsDB/contigs.db --enforce-hierarchical-clustering
+
+
+
+conda install -c bioconda bioconductor-deseq2 -y
+conda install -c bioconda segemehl -y
+conda install -c r r-gplots -y
