@@ -1,3 +1,5 @@
+# Course protocol
+
 # Sequencing Pipeline
 
 To go from raw data produced by a sequencer to a completed genome many steps are needed. These steps can be summarized under the term "sequencing pipeline" and are described below. In each step, the data is processed and the output is used as input for the next step. 
