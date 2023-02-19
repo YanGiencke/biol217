@@ -2,7 +2,7 @@
 
 ## Summary
 1. What is Ribo-Seq?
-2. Using a geome browser
+2. Using Integrated Geome Browser (IGB)
 3. How to identify genes
 
 
@@ -50,9 +50,14 @@ In Integerated Genome Browser we can visualize the differential expression of ge
 ![Differential Expression](resources/Expression.png)
 
 
+
+Information about the csrA gene:
 1. Start Codon: ATG
 2. Stop Codon: TAA
-3. Length in Amino Acids: 61
+3. Length in Amino Acids: 61 (does not include stop codon)
+4. Shine-Dalgarno sequence (consensus AGGAGG at -7 to -4): AGGAG at -7
+5. Upsream gene: alaS (STM14_3413)
+6. Is the csrA gen translated? Yes, because the RIBO-Seq data covers the whole gene.
 
 
 

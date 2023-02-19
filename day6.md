@@ -41,7 +41,9 @@ Answer: The MAGs are much shorter. For example N50 shows the average length of f
 
 Question: Based on the contig numbers, sizes and number of marker genes (HMM hits), which two MAGs are the best and which is the worst?
 
-Answer:
+Answer: 
+    Best: Methano_Bin13, Methano_Bin8
+    Worst: Methano_Bin5, Methano_Bin10
 
 Create an external genomes file:
 external-genomes.txt
