@@ -154,7 +154,7 @@ The following programs are used:
   ```
   </details>
 
-  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/assemblyscript.sh)
+  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/72f605574bbcf429966ff1d4bbc13783ace20703/scripts/assemblyscript.sh)
 
 
 - **Fastp** is a program that trims and filters the DNA fragments. It can be used to trim the DNA fragments to a specific length, to remove low quality nucleotides from the beginning and end of the DNA fragments, and to remove DNA fragments with too many low quality nucleotides. The parameters for trimming and filtering are specified in the batch script. The output of fastp is a fastq file with the trimmed and filtered DNA fragments.
@@ -190,10 +190,12 @@ To visualize the contigs, you can use the program **[Bandage](https://rrwick.git
   ``` 
   megahit_toolkit contig2fastg 99 -i input_file.fa -o output_file.fastg
   ```
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/contig2fastg.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/contig2fastgcscript.sh)
 
   The following image shows the visualisation of the contigs using Bandage. The contigs are sorted by length.
   ![Bandage results](resources/bandage_graph.png)
+  
+  ![Bandage results2](https://github.com/YanGiencke/biol217/blob/main/resources/bandage_graph.png)
 
 A quick way to count the number of contigs in a fasta file is to use the following code:
   ```
@@ -890,13 +892,14 @@ hist(DNase$density)
 hist(DNase$conc)
 ```	
 The following plots were created:
-![irisall](/R/intro/plot.png)
 
-![iris](/R/intro/Iris.png)
+![irisall](C:\Users\yang1\Desktop\Gitneu\biol217\R\intro\plot.png)
 
-![iris](/R/intro/boxplot.png)
+![iris](C:\Users\yang1\Desktop\Gitneu\biol217\R\intro\Iris.png)
 
-![iris](/R/intro/DNase.jpg)
+![iris](C:\Users\yang1\Desktop\Gitneu\biol217\R\intro\boxplot.png)
+
+![iris](C:\Users\yang1\Desktop\Gitneu\biol217\R\intro\DNase.jpg)
 
 
 # RIBO-Seq
