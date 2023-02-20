@@ -154,7 +154,7 @@ The following programs are used:
   ```
   </details>
 
-  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/72f605574bbcf429966ff1d4bbc13783ace20703/scripts/assemblyscript.sh)
+  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/fastqcscript.sh)
 
 
 - **Fastp** is a program that trims and filters the DNA fragments. It can be used to trim the DNA fragments to a specific length, to remove low quality nucleotides from the beginning and end of the DNA fragments, and to remove DNA fragments with too many low quality nucleotides. The parameters for trimming and filtering are specified in the batch script. The output of fastp is a fastq file with the trimmed and filtered DNA fragments.
@@ -163,7 +163,7 @@ The following programs are used:
   - Input file: `fastq` (+ information from report.`HTML`)
   - Output file: `fastq`
 
-  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/fastpscript.sh)
+  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/fastpscript.sh)
 
 
 ## 3. Assembly
@@ -177,7 +177,7 @@ To assemble the DNA fragments into contigs, the program **[megahit](https://gith
 - Input: `R1_fastq` + `R2_fastq` (trimmed and filtered by fastp)
 - Output: `fa` (fasta)
 
-  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/assemblyscript.sh)
+  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/assemblyscript.sh)
 
 
 To visualize the contigs, you can use the program **[Bandage](https://rrwick.github.io/Bandage/)**. For this you need to convert the fasta file to a fastg file.
@@ -190,12 +190,10 @@ To visualize the contigs, you can use the program **[Bandage](https://rrwick.git
   ``` 
   megahit_toolkit contig2fastg 99 -i input_file.fa -o output_file.fastg
   ```
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/contig2fastgcscript.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/contig2fastgcscript.sh)
 
   The following image shows the visualisation of the contigs using Bandage. The contigs are sorted by length.
   ![Bandage results](resources/bandage_graph.png)
-  
-  ![Bandage results2](https://github.com/YanGiencke/biol217/blob/main/resources/bandage_graph.png)
 
 A quick way to count the number of contigs in a fasta file is to use the following code:
   ```
@@ -207,7 +205,7 @@ Qualty assessment of the contigs is done using **[quast](https://quast.sourcefor
   - input: `fa` (fasta)
   - output: `HTML` (report)
 
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/metaquastscript.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/metaquastgscript.sh)
 
 **Questions to assembly:**
 
@@ -237,7 +235,7 @@ Binning is done in the [anvi'o](https://anvio.org/) environment, which requires 
   - Input: `fa` (fasta)
   - Output: `fa` (fasta anvi'o)
 
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/anvio_reformat.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/anvio_reformat.sh)
 
 
 Mapping of the contigs is done using **[bowtie2]( http://bowtie-bio.sourceforge.net/bowtie2/index.shtml)**. Here the raw reads are mapped onto our assembled contigs.
@@ -247,7 +245,7 @@ Mapping of the contigs is done using **[bowtie2]( http://bowtie-bio.sourceforge.
   - Input: `fa` (fasta anvi'o)
   - Output: `bt2` (bowtie2 index)
 
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/bowtie2_build.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/bowtie2_build.sh)
 
 
   Then the raw reads are mapped onto the contigs:
@@ -255,21 +253,21 @@ Mapping of the contigs is done using **[bowtie2]( http://bowtie-bio.sourceforge.
   - Input: `bt2` (bowtie2 index) + `fq` (fastq trimmed)
   - Output: `sam` (sequence alignment map)
 
-      [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/mappingscript.sh)
+      [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/mappingscript.sh)
 
   The mapping results are converted to a binary alignment map (bam) file:
   - Command: **[samtools view]( http://www.htslib.org/)**
   - Input: `sam` (sequence alignment map)
   - Output: `bam` (binary alignment map)
 
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/sam2bam.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/sam2bam.sh)
 
   The bam file is sorted and indexed:
   - Command: **[anvi-init-bam]( https://anvio.org/help/main/programs/anvi-init-bam/)**
   - Input: `bam` (binary alignment map)
   - Output: `bam` (sorted) + `bam.bai` (index)
 
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/sort_index_bam.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/sort_index_bam.sh)
 
 Next we create a contigs database which holds important information about the contigs. The program **[anvi-gen-contigs-database](https://merenlab.org/2016/06/22/anvio-tutorial-v2/#creating-an-anvio-contigs-database)** computes the k-mer frequencies and identifies open reading frames (ORFs) using [Prodigal](https://github.com/hyattpd/Prodigal). On the created contigs database, we perform a search for hidden Markov models (HMMs) using [anvi-run-hmms](https://anvio.org/help/7/programs/anvi-run-hmms/).
 
@@ -278,21 +276,21 @@ Next we create a contigs database which holds important information about the co
   - Input: `fa` (fasta anvi'o)
   - Output: `db` (contigs database) 
 
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/contigdbscript.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/contigdbscript.sh)
 
 Creating anvi'o profiles:
   - Command: **[anvi-profile](https://merenlab.org/2016/06/22/anvio-tutorial-v2/#creating-an-anvio-profile)**
   - Input: `bam` (sorted) + `db` (contigs database)
   - Output: `db` (anvi'o profile)
 
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/anvio_profile.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/anvio_profile.sh)
 
 Merging the anvi'o profiles:
   - Command: **[anvi-merge](https://merenlab.org/2016/06/22/anvio-tutorial-v2/#merging-anvio-profiles)**
   - Input: `db` (anvi'o profiles)
   - Output: `db` (merged profile)
 
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/anvi_merge.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/anvi_merge.sh)
 
 
 ### Binning
@@ -305,17 +303,17 @@ Now the actual binning is done using [Metabat2](https://bitbucket.org/berkeleyla
   Metabat2 binning:
   - requires the additon of --driver metabat2 to the anvi-cluster-contigs command
 
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/metabat2.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/metabat2.sh)
 
   CONCOCT binning: 
   - requires the additon of --driver concoct to the anvi-cluster-contigs command
   
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/concoct.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/concoct.sh)
 
   DAS_Tool for consolidating the bins:
   - requires the additon of --driver das_tool to the anvi-cluster-contigs command
 
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/dastool.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/dastool.sh)
 
 
 **Questions to the binning:**
@@ -360,7 +358,7 @@ These steps can be done with the generated html file from the binning step (anvi
 
   To detect chimeric bins, we use the program [GUNC](https://grp-bork.embl-community.io/gunc/). The program is run on the fasta file of the Archaea bins. Only the non chimeric bins pass the GUNC filter.
 
-  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/gunc.sh)
+  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/gunc.sh)
 
 **Questions to the bin refinement:**
 
@@ -414,7 +412,7 @@ In the interactive interface, we sort the bins by differerential coverage and re
       BGR_130305: 1.76
 
     Submit your output Figure
-![Refined bin](/resources/bin_refine_cut.png)
+![Refined bin](resources/bin_refine_cut.png)
 
 
 ## 7. Taxonomic classification
@@ -424,7 +422,7 @@ In this step we run the following programs in a batch script:
   - Command: **[anvi-estimate-scg-taxonomy](https://anvio.org/help/main/programs/anvi-estimate-scg-taxonomy/)**
   - Command: **[anvi-summarize](https://anvio.org/help/main/programs/anvi-summarize/)**
 
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/taxonomy.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/taxonomy.sh)
 
 **Questions to the taxonomic classification:**
 
@@ -490,9 +488,9 @@ Answer:
 |Best | Methano_Bin13 | Methano_Bin13 | Methano_Bin13 |
 |Worst | Methano_Bin5 |Methano_Bin10 | Methano_Bin5 |
 
-![Contig stats](/resources/Contigstats1.png)
-![Contig stats](/resources/Contigstats3.png)
-![Contig stats](/resources/Contigstats2.png)
+![Contig stats](resources/Contigstats1.png)
+![Contig stats](resources/Contigstats3.png)
+![Contig stats](resources/Contigstats2.png)
 
 
 ## 2. Create a pangenome database
@@ -575,13 +573,13 @@ For the pangenome analysis we need to create two databases:
     - any post-analysis of gene clusters, downstream analyses and visualisations
 
 
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/anvi_genomes.sh)
+    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/anvi_genomes.sh)
 
 
 ## 3. Compare the databases using ANI
 In this step we use the [anvi-compute-genome-similarity](https://anvio.org/help/main/programs/anvi-compute-genome-similarity/) command to compare the genomes in the genomes-storage.db database. The resulting file shows the similarity between all genomes in the database.
 
-    [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/similarity.sh)
+  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/similarity.sh)
 
 
 ## 4. Visualize the results
@@ -653,7 +651,7 @@ Answer: No. Only Bin 9 is closely related to the reference Methano Mflavescens. 
 
 - Save your state and export this view as .svg
 
-[pangenome.svg](resources/pangenome.svg)
+[pangenome.svg](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/resources/pangenome.svg)
 
 
 ### TASKS: Functional/geometric homogeneity and their uses
@@ -752,7 +750,7 @@ reademption create --project_path READemption_analysis --species salmonella="Sal
 Lastly we need to make sure that the data has the correct format and headers. 
 Ater that all steps are executed in one batch script by READemption.
 
-  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/main/scripts/READemption.sh)
+  [Batch script used in course](https://github.com/YanGiencke/biol217/blob/2f38563f7ba5d0696b12e41721d00b64fc472b46/scripts/READemption.sh)
 
 
 # Introduction to R
@@ -893,13 +891,13 @@ hist(DNase$conc)
 ```	
 The following plots were created:
 
-![irisall](C:\Users\yang1\Desktop\Gitneu\biol217\R\intro\plot.png)
+![irisall](R\intro\plot.png)
 
-![iris](C:\Users\yang1\Desktop\Gitneu\biol217\R\intro\Iris.png)
+![iris](R\intro\Iris.png)
 
-![iris](C:\Users\yang1\Desktop\Gitneu\biol217\R\intro\boxplot.png)
+![iris](R\intro\boxplot.png)
 
-![iris](C:\Users\yang1\Desktop\Gitneu\biol217\R\intro\DNase.jpg)
+![iris](R\intro\DNase.jpg)
 
 
 # RIBO-Seq
@@ -920,7 +918,7 @@ In the course we used data fron the paper: [Role of CsrA in stress responses and
 ## Integrated Genome Browser (IGB)
 The Integrated Genome Browser (IGB) is a program used for analysing differential gene expression based on RNA-Seq and RIBO-Seq data. To use the program we need to load the fasta files for the genome and the annotation file (.gff). Then we can load the coverage files (.bw). 
 The following picture shows the differential expression of the csrA gene in the wildtype and Mutant strain described in the paper.
-![csrA](/resources/Expression.png)
+![csrA](resources/Expression.png)
 The csrA gene starts at base pair 2991371 and ends at 2991185.In Integerated Genome Browser we can visualize the differential expression of genes between the two conditions.
 
 Information about the csrA gene:
@@ -946,7 +944,7 @@ plot1
 
 ggsave("Differential_gene_expression1")
 ```
-![plot1](/R/intro/Differential_gene_expression1.png)
+![plot1](R/intro/Differential_gene_expression1.png)
 ```
 sheet2 <- read_excel("csrA-WT_sorted.xlsx", sheet = "Sheet3")
 plot2 <- ggplot(sheet2, aes(Name, log2FC_TE_final))+geom_bar(stat = "identity") +
@@ -956,7 +954,7 @@ plot2
 
 ggsave("Differential_gene_expression2.png")
 ```
-![plot2](/R/intro/Differential_gene_expression2.png)
+![plot2](R/intro/Differential_gene_expression2.png)
 ```
 sheet3 <- read_excel("csrA-WT_sorted.xlsx", sheet = "Sheet5")
 plot3 <- ggplot(sheet3, aes(Seq_type, Identifier, fill=log2FC))+geom_tile()+
@@ -966,4 +964,4 @@ plot3
 
 ggsave("Differential_gene_expression3.png")
 ```
-![plot3](/R/intro/Differential_gene_expression3.png)
+![plot3](R/intro/Differential_gene_expression3.png)
